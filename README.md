@@ -7,3 +7,11 @@ Topics covered:
 - Applying initial migrations
 - Create first views
 - Create a URL patterns to the polls app
+
+## Part 2 - Database & Models
+- Setup default database engine to use
+- Create django models
+- Create new migrations 
+- Apply migrate
+- Generate django's built in admin interface
+
