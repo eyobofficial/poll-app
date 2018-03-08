@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  {% block title %}
+  <title>Polling App</title>
+  {% endblock title %}
+  <meta name="viewport" content="widith=device-width, initial-scale=1.0">
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
+
+  {% block vendor_css %}
+  {% endblock vendor_css %}
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'assets/custom/css/default.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/custom/css/default.css' %}">
+
+  {% block custom_css %}
+  {% endblock custom_css %}
+</head>
+<body>
+  {% block page_wrapper %}
+  <div id="page_wrapper">
+    
+    <!-- Page Main -->
+    {% block page_main %}
+    {% endblock page_main %}
+
+  </div><!-- /#page_wrapper -->
+  {% endblock page_wrapper %}
+
+<!-- Vendor JavaScript -->
+<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'assets/vendor/jquery/bootstrap.min.js' %}"></script>
+
+{% block vendor_js %}
+{% endblock vendor_js %}
+
+<!-- Custom JavaScript -->
+<script src="{% static 'assets/custom/js/script.js' %}"></script>
+
+{% block custom_js %}
+{% endblock custom_js %}
+</body>
+</html>

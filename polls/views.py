@@ -1,8 +1,13 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from . import models
 
 
 def index(request):
     """
-    Index page controller
+    List some question
     """
-    return HttpResponse('Hello, World!')
+    question_list = models.Question.objects.all()[:5]
+    template_name = 'polls/index.html'
+    return render(request, template_name, {
+        'question_list': question_list,
+    })
