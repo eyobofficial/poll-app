@@ -1,5 +1,8 @@
+import datetime
+
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Question(models.Model):
@@ -11,6 +14,13 @@ class Question(models.Model):
 
     class Meta:
         ordering = ['-pub_date', 'question_text', ]
+
+    def published_recently(self):
+        """
+        Check whether a Question was published within the last 5 hours
+        Returns a boolean
+        """
+        return self.pub_date >= timezone.now() - datetime.timedelta(hours=5)
 
     def get_absolute_url(self, *args, **kwargs):
         return reverse('polls:question-detail', args=[str(self.pk)])
