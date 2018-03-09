@@ -17,3 +17,8 @@ Topics covered:
 - Generate Django's built in admin interface
 
 ## Part 3 - Views
+- Writing basic views
+- Writing URLConfs and app namespacing
+- Using the render, get_object_or_404 & get_list_or_404 shortcuts
+- Writing basic templates
+- Removing hard coded urls in templates
