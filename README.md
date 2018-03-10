@@ -28,4 +28,6 @@ Topics covered:
 - Writing 'votes' view function to handle the voting form
 
 ## Part 5 - Automated Testing
-- Creating automated tests
+- Create a test to check whether published_recently() returns False 
+  for questions with future pub_date
+- 
