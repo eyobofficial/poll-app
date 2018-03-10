@@ -20,7 +20,8 @@ class Question(models.Model):
         Check whether a Question was published within the last 5 hours
         Returns a boolean
         """
-        return self.pub_date >= timezone.now() - datetime.timedelta(hours=5)
+        now = timezone.now()
+        return now - datetime.timedelta(hours=5) <= self.pub_date <= now
 
     def get_absolute_url(self, *args, **kwargs):
         return reverse('polls:question-detail', args=[str(self.pk)])
