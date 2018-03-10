@@ -25,6 +25,15 @@
 <body>
   {% block page_wrapper %}
   <div id="page_wrapper">
+
+    <!-- page header -->
+    <header id="pageHeader">
+      <div class="container-fluid">
+        <a href="{% url 'polls:index' %}">
+          <i class="fa fa-home"></i> Home
+        </a>
+      </div>
+    </header>
     
     <!-- Page Main -->
     {% block page_main %}

@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
 
 {% block page_main %}
-<div class="container-fluid">
-    <h2>Detail for Question {{ pk }}</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>{{ question.question_text }}</h2>
+
+            {% if error_message %}
+            <p>{{ error_message }}</p>
+            {% endif %}
+            
+            <form name="poll_form" action="{% url 'polls:vote' question.id %}" method="POST">
+                {% csrf_token %}
+                {% for choice in question.choice_set.all %}
+                  <label class="radio">
+                      <input type="radio" name="choice" value="{{ choice.id }}"> 
+                      {{ choice.choice_text }}
+                  </label>
+                {% endfor %}
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Vote</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
 </div>
 {% endblock page_main %}

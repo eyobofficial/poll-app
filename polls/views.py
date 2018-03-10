@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from . import models
+from . import forms
 
 
 def index(request):
@@ -23,6 +23,7 @@ def detail(request, pk):
     template_name = 'polls/poll_detail.html'
     return render(request, template_name, context={
         'question': question,
+        'form': forms.PollForm,
     })
 
 
@@ -30,9 +31,10 @@ def result(request, pk):
     """
     Display a particular question voting results
     """
+    question = get_object_or_404(models.Question, pk=pk)
     template_name = 'polls/poll_result.html'
     return render(request, template_name, context={
-        'pk': pk,
+        'question': question,
     })
 
 
@@ -40,4 +42,23 @@ def vote(request, pk):
     """
     Takecare voting of a particular poll
     """
-    return HttpResponse('Vote for question no. {}'.format(pk))
+    if request.method == 'POST':
+        question = get_object_or_404(models.Question, pk=pk)
+
+        try:
+            selected_choice = question.choice_set.get(
+                pk=request.POST['choice']
+            )
+        except:
+            return render(
+                request,
+                'polls/poll_detail.html',
+                context={
+                    'error_message': 'You did not select any choice',
+                    'question': question,
+                }
+            )
+        selected_choice.votes += 1
+        selected_choice.save()
+        return redirect('polls:poll-result', pk=pk)
+    return render(request, 'polls/poll_detail.html')

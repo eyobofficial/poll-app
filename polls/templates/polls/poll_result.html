@@ -2,6 +2,15 @@
 
 {% block page_main %}
 <div class="container-fluid">
-    <h2>Poll Result for Question {{ pk }}</h2>
+    <h2>{{ question.question_text }}</h2>
+    <h4>Results</h4>
+
+    {% if question.choice_set.all %}
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>{{ choice.choice_text }} &nbsp; - &nbsp; ({{ choice.votes }} votes)</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </div>
 {% endblock %}

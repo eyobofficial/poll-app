@@ -22,3 +22,10 @@ Topics covered:
 - Using the render, get_object_or_404 & get_list_or_404 shortcuts
 - Writing basic templates
 - Removing hard coded urls in templates
+
+## Part 4 - Forms
+- Creating a form template for voting
+- Writing 'votes' view function to handle the voting form
+
+## Part 5 - Automated Testing
+- Creating automated tests
