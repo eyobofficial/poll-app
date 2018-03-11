@@ -1,30 +1,31 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views import generic
+from django.utils import timezone
+
 from . import models
-from . import forms
 
 
-def index(request):
+class IndexView(generic.ListView):
     """
-    List some question
+    List latest question
     """
-    question_list = models.Question.objects.all()[:5]
     template_name = 'polls/index.html'
-    return render(request, template_name, {
-        'question_list': question_list,
-    })
+    model = models.Question
+
+    def get_queryset(self, *args, **kwargs):
+        return self.model.objects.filter(
+            pub_date__lte=timezone.now()
+        ).exclude(choice__isnull=True).order_by('-pub_date')[:5]
 
 
-def detail(request, pk):
-    """
-    Display a particular question and voting form without the results
-    """
-    question = get_object_or_404(models.Question, pk=pk)
-
+class QuestionDetail(generic.DetailView):
+    model = models.Question
     template_name = 'polls/poll_detail.html'
-    return render(request, template_name, context={
-        'question': question,
-        'form': forms.PollForm,
-    })
+
+    def get_queryset(self, *args, **kwargs):
+        return self.model.objects.filter(
+            pub_date__lte=timezone.now()
+        ).exclude(choice__isnull=True)
 
 
 def result(request, pk):

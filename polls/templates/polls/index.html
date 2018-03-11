@@ -10,6 +10,8 @@
       <li>
         <a href="{% url 'polls:poll-detail' question.id %}">{{ forloop.counter }}. {{ question.question_text }}</a>
       </li>
+      {% empty %}
+      <p>No polls are available</p>
       {% endfor %}
     </ul>
 </div>
