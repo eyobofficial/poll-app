@@ -30,4 +30,5 @@ Topics covered:
 ## Part 5 - Automated Testing
 - Create a test to check whether published_recently() returns False 
   for questions with future pub_date
-- 
+- Create more automated tests for views and modify the logic to pass the 
+  tests
