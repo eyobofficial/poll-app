@@ -32,3 +32,12 @@ Topics covered:
   for questions with future pub_date
 - Create more automated tests for views and modify the logic to pass the 
   tests
+
+## Part 6 - Static Files
+- Serving static files (images, css styles and JavaScripts)
+
+## Part 7 - Customizing Admin Site
+- Registering models
+- Display related models inline (Choice model inside Question model)
+- Add search fields to admin change lists
+- Editing of admin templates headers
